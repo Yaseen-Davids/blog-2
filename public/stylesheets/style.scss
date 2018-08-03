@@ -1,0 +1,1008 @@
+// This is the sass stylesheet
+
+// This is the universal selector
+* {
+    margin: 0;
+}
+
+// This is the variables
+$borderSettings: 1px solid black;
+$headerColor:#393a3b;
+$themeBlue : #4776E6;
+
+// This is the mixins
+@mixin socialLogos {
+    float: left;
+    margin-left: 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.5em;
+
+    &:hover{
+        color: #4776E6;
+    }
+}
+
+@mixin categoryBox {
+    box-shadow: 0px 0px 5px grey;
+    transition: all 0.3s;
+    position: relative;
+
+    h4{
+        position: absolute;
+        left: 50%;
+        top: 80%;
+        transform: translate(-50%,-50%);
+        cursor: pointer;
+        padding: 20px;
+        width: 80%;
+        text-align: center;
+        font-weight: lighter;
+        height: 10%;
+        color: rgb(39, 39, 43);
+        background: rgb(255, 255, 255);
+        font-size: 1.3em;
+        transition: all 0.3s;
+
+        &:hover{
+            color: rgb(156, 18, 0);
+        }
+    }
+}
+
+@mixin contentBody {
+    .post_header{
+        margin-bottom: 10px;
+    }
+    a{
+        font-size: 0.85em;
+        color: #4776E6;
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        transition: all 0.2s;
+        &:hover{
+            text-decoration-color: #4776E6;
+        }
+    }
+    h5{
+        margin-top: 30px;
+        color: #5c5c5c;
+        font-weight: lighter;
+        font-size: 1em;
+        word-spacing: 2px;
+    }
+    p{
+        margin-top: 10px;
+        font-size: 0.9em;
+        font-weight: lighter;
+    }
+}
+
+@mixin defaultBtn {
+    border: none;
+    outline: none;
+    font-size: 1em;
+    height: 50px;
+    width: 120px;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 30px;
+    color: white;
+    background: #333;
+    transition: all 0.3s;
+}
+
+// The logo for the contact us section
+@mixin contactLogo {
+    height: 40px;
+    width: 50px;
+    float: left;
+
+    img{
+        height: 40px;
+        width: 50px;
+    }
+}
+
+// The main contact us logo and text section
+@mixin contactMain {
+    margin-top: 40px;
+    height: 40px;
+    width: 400px;
+}
+
+// The text inside the contact us section
+@mixin contactText {
+    margin-top: 10px;
+    float: left;
+    margin-left: 20px;
+    color: white;
+    h4{
+        font-weight: lighter;
+    }
+}
+
+@mixin loginForm{
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    
+    p{
+        margin-top: 10px;
+    }
+}
+
+/* ######################################################################################### */
+
+/* ######################## MAIN GRID CONTAINER ######################## */
+#container{
+    font-family: 'Montserrat', sans-serif;
+    display: grid;
+    grid-template-areas: 'navbar'
+    'home-image'
+    'intro-section'
+    'content-main'
+    'footer'
+    ;
+    grid-template-columns: 1fr;
+}
+
+// This is the margin wrapper
+.margin-wrapper{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+
+/* ######################## NAVBAR ######################## */
+#navbar{
+    grid-area: navbar;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 60px;
+    z-index: 10000;
+    transition: all 0.3s;
+
+    /* NAVBAR LINKS */
+    #nav_links{
+        margin-top: 20px;
+        float: left;
+
+        // TECHTALK
+        .selected{
+            color: rgb(226, 226, 226);
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        // If user is on this page
+        .active{
+            color: white;
+        }
+
+        a{
+            margin-right: 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: rgb(199, 199, 199);
+            transition: all 0.3s;
+
+            &:hover{
+                color: white;
+            }
+        }
+
+        .home-link{
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #4776E6;
+        }
+    }
+
+    /* USER LOGIN AND LOGOUT BUTTON */
+    #user-sessions{
+        margin-top: 20px;
+        float: right;
+
+        a{
+            font-size: 0.9em;
+            margin-right: 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: rgb(199, 199, 199);
+            border: 2px solid rgb(199, 199, 199);
+            padding: 8px;
+            transition: all 0.3s;
+            &:hover{
+                color: white;
+                border-color: rgb(255, 255, 255);
+            }
+        }
+
+        .vis-btn{
+            display: none;
+        }
+
+        #hamburger-menu{
+            display: none;
+        }
+    }
+}
+
+.new-bgcolor{
+    background: rgba(20, 20, 20, 0.85);
+}
+
+
+// The color scheme for sub header and category name
+.category{
+    color: #d30603;
+}
+
+
+/* ######################## HOME IMAGE ######################## */
+#home-image{
+    grid-area: home-image;
+    height: 100vh;
+    background: url("https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+
+    /* HOME TEXT */
+    #home-text{
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%,-50%);
+        border-radius: 2px;
+        height: 200px;
+        width: 450px;
+        animation-name: slideText;
+        animation-duration: 1s;
+
+        @keyframes slideText {
+            0%{
+                top: -30%;
+            }
+            100%{
+                top: 40%;
+            }
+        }
+
+        h1{
+            font-size: 2.5em;
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%,-50%);
+            text-transform: uppercase;
+            color: white;
+        }
+        h3{
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translate(0%,50%);
+            color: white;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+    }
+
+    // Text for login and register pages
+    #login-text{
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        transform: translate(-50%,-50%);
+        border-radius: 2px;
+        height: 200px;
+        width: 450px;
+        animation-name: slideTextLogin;
+        animation-duration: 1s;
+
+        @keyframes slideTextLogin {
+            0%{
+                top: -30%;
+            }
+            100%{
+                top: 100px;
+            }
+        }
+
+        h1{
+            font-size: 2.5em;
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%,-50%);
+            text-transform: uppercase;
+            color: white;
+        }
+        h3{
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translate(0%,50%);
+            color: white;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+        h4{
+            position: absolute;
+            top: 68%;
+            left: 8%;
+            transform: translate(0%,50%);
+            color: rgb(226, 226, 226);
+            font-weight: 400;
+        }
+    }
+
+    /* HOME SIGNUP SECTION */
+    #home-signup{
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%,-50%);
+        padding: 10px;
+        color: #4776E6;
+        animation-name: slideButton;
+        animation-duration: 2s;
+
+        @keyframes slideButton {
+            0%{
+                top: -30%;
+            }
+            60%{
+                top: 65%;
+            }
+            100%{
+                top: 60%;
+            }
+        }
+
+        button{
+            left: 40%;
+            top: 50%;
+            transform: translate(0%,0%);
+            @include defaultBtn;
+
+            .fa-chevron-right{
+                margin-left: 10px;
+                transition: all 0.3s;
+            }
+            &:hover{
+                background: rgb(18, 206, 18);
+                .fa-chevron-right{
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+    
+}
+
+#navbar-links{
+    display: none;
+}
+
+
+
+/* ######################## INTRO SECTION ######################## */
+#intro-section{
+    grid-area: intro-section;
+    margin-top: 50px;
+    
+    /* INTRO HEADER */
+    #intro-header{
+        padding: 20px;
+        text-align: center;
+        color: #5f5a5a;
+        h4{
+            font-size: 1.5em;
+            font-weight: lighter;
+        }
+    }
+    
+    /* INTRO HEADER */
+    #intro-main{
+        display: grid;
+        grid-template-areas: 'tech-main game-main gadget-main'
+        ;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 20px;
+        padding: 20px;
+        height: 250px;
+
+        img{
+            height: 100%;
+            width: 100%;
+            filter: grayscale(0);
+
+            &:hover{
+                filter: grayscale(2);
+            }
+        }
+
+        /* TECH MAIN */
+        #tech-main{
+            grid-area: tech-main;
+            @include categoryBox;
+        }
+        /* GAMING MAIN */
+        #game-main{
+            grid-area: game-main;
+            @include categoryBox;
+        }
+        /* GADGET MAIN */
+        #gadget-main{
+            grid-area: gadget-main;
+            @include categoryBox;
+        }
+    }
+}
+
+/* ######################## BLOG CONTENT SECTION ######################## */
+#content-main{
+    grid-area: content-main;
+    padding: 10px;
+    margin-top: 50px;
+
+    /* CONTENT HEADER */
+    #content-header{
+        color: #cc3633;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        h2{
+            font-weight: lighter;
+            text-transform: uppercase;
+            // color: white;
+        }
+    }
+
+    /*  This is the latest articles section */
+    #content-post{
+        display: grid;
+        grid-template-areas: 'blog-post'
+        ;
+        grid-template-columns: 1fr;
+        height: 450px;
+        width: 31.5%;
+        display: inline-block;
+        padding: 5px;
+
+        /* BLOG POST */
+        .blog-post{
+            border: 1px solid rgba(62,67,98,.19);
+            box-shadow: 0 4px 14px 3px rgba(0,0,0,.12);
+            margin-right: 10px;
+            margin-left: 10px;
+            float: left;
+            background: rgba(255, 255, 255, 0.952);
+            
+            // BLOG POST IMAGE
+            #post-image{
+                height: 200px;
+                overflow: hidden;
+                img{
+                    height: 100%;
+                    width: 100%;
+                    transition: all 0.3s;
+                    &:hover{
+                        transform: scale(1.2);
+                    }
+                }
+            }
+            // BLOG POST BODY
+            #post-body{
+                padding: 20px;
+                a{
+                    color: #4776E6;
+                    cursor: pointer;
+                    text-decoration: underline;
+                    text-decoration-color: transparent;
+                    transition: all 0.2s;
+                    &:hover{
+                        text-decoration-color: #4776E6;
+                    }
+                }
+                h5{
+                    color: grey;
+                    font-weight: lighter;
+                    margin-top: 40px;
+                    font-size: 1em;
+                }
+                p{
+                    margin-top: 10px;
+                    font-size: 0.8em;
+                }
+                .category{
+                   color: #db0906;
+                }
+            }
+        }
+    }
+
+    /* ########################### This is the section articles section ################################### */
+    #content-header2{
+        color: #cc3633;
+        // color: white;
+        margin-top: 100px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        h2{
+            font-weight: lighter;
+            text-transform: uppercase;
+        }
+    }
+
+    // BLOG CONTENT MAIN
+    #blog-content{
+        display: grid;
+        grid-template-areas: 'blog-img blog-body'
+        ;
+        grid-template-columns: 30% 1fr;
+        grid-gap: 30px;
+        height: 250px;
+        border-bottom: 1px solid #ddd;
+        color: #393a3b;
+        margin-bottom: 20px;
+        padding: 10px;
+        box-shadow: 0 4px 10px 2px rgba(0,0,0,.12);
+        transition: all 0.3s;
+        background: rgba(255, 255, 255, 0.952);
+
+        &:hover{
+            box-shadow: 0 4px 14px 5px rgba(0,0,0,.12);
+        }
+
+
+        // BLOG IMAGE
+        #blog-img{
+            grid-area: blog-img;
+            overflow: hidden;
+            img{
+                cursor: pointer;
+                height: 100%;
+                width: 100%;
+                transition: all 0.3s;
+                &:hover{
+                    transform: scale(1.2);
+                }
+            }
+        }
+
+        // BLOG BODY
+        #blog-body{
+            grid-area: blog-body;
+            @include contentBody;
+        }
+        
+    }
+
+    // BLOG CONTENT WITHOUT AN IMAGE
+    #blog-content-only{
+        display: grid;
+        grid-template-areas: 'blog-body-only'
+        ;
+        grid-template-columns: 1fr;
+        height: 250px;
+        color: #393a3b;
+        background: rgba(255, 255, 255, 0.76);
+        padding: 10px;
+
+        // BLOG CONTENT ONLY (NO IMAGE)
+        #blog-body-only{
+            grid-area: blog-body-only;
+            @include contentBody;
+            h4{
+                margin-top: 10px;
+                font-weight: lighter;
+                word-spacing: 2px;
+            }
+        }    
+    }
+
+    // READ MORE BUTTON
+    .readmore-btn{
+        border: none;
+        outline: none;
+        background: transparent;
+        color: black;
+        border: 2px solid #555555;
+        padding: 8px 16px;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: all 0.4s;
+        &:hover{
+            background-color: #555555;
+            color: white;
+        }
+    }
+}
+
+/* ######################### SINGLE BLOG POST PAGE ######################### */
+#blog-post-single{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.192);
+    padding: 10px;
+
+    // SINGLE BLOG POST HEADER
+    #single-post-header{
+        h2{
+            margin-top: 20px;
+            font-size: 2.5em;
+            color: white;
+            font-weight: lighter;
+        }
+        p{
+            font-size: 1.1em;
+            margin-top: 10px;
+            color: white;
+        }
+    }
+    // MARGIN FOR THE BLOG POST CONTENT
+    .content-margin{
+        margin-left: 70px;
+        margin-right: 50px;
+
+        // IMAGE ON SINGLE BLOG POST IMAGE PROPERTIES
+        #single-post-image{
+            margin-top: 30px;
+            img{
+                width: 800px;
+                height: 500px;
+            }
+        }
+        // SINGLE BLOG POST BODY
+        #single-post-body{
+            margin-top: 30px;
+            h4{
+                font-weight: lighter;
+                font-size: 1.3em;
+                color: white;
+            }
+        }
+    }
+}
+
+// EDIT BUTTON ON THE BLOG POST
+.edit-post{
+    @include defaultBtn;
+    margin-top: 30px;
+    background: $themeBlue;
+
+    .fa-edit{
+        margin-left: 10px;
+    }
+    &:hover{
+        background: blue;
+    }
+}
+
+// DELETE BUTTON ON THE BLOG POST
+.delete-post{
+    @include defaultBtn;
+    margin-left: 10px;
+    margin-top: 30px;
+    background: rgb(218, 35, 3);
+    .fa-trash-alt{
+        margin-left: 10px;
+    }
+    &:hover{
+        background: red;
+    }
+}
+
+// CANCEL BUTTON FOR THE EDIT BLOG POST PAGE
+.cancel-edit{
+    @include defaultBtn;
+    margin-left: 10px;
+    margin-top: 30px;
+    background: rgb(218, 35, 3);
+    .fa-times{
+        margin-left: 10px;
+    }
+    &:hover{
+        background: red;
+    }
+}
+
+
+// ######################## THIS IS THE FOOTER ########################
+#footer{
+    grid-area: footer;
+    margin-top: 80px;
+    height: 400px;
+    background: linear-gradient(to right, #4776E6, #8E54E9 );
+
+    // FOOTER MAIN GRID
+    #footer-main{
+        display: grid;
+        grid-template-areas: 'footer-section footer-form'
+        ;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 30px;
+        padding: 10px;
+
+        h3{
+            margin-top: 10px;
+            color: white;
+        }
+
+        // FOOTER SECTION WITH THE CONTACT DETAILS
+        #footer-section{
+            grid-area: footer-section;
+            height: 275px;
+            
+            // PHONE MAIN BOX
+            .phone-box{
+                @include contactMain();
+
+                #phone-logo{
+                    @include contactLogo();
+                }
+                #phone-text{
+                    @include contactText();
+                }
+            }
+
+            // EMAIL MAIN BOX
+            .email-box{
+                @include contactMain();
+
+                #email-logo{
+                    @include contactLogo();
+                }
+                #email-text{
+                    @include contactText();
+                }
+            }
+
+            // LOCATION MAIN BOX
+            .location-box{
+                @include contactMain();
+                height: 50px;
+
+                #location-logo{
+                    @include contactLogo();
+                    width: 12%;
+                    height: 50px;
+                }
+                #location-text{
+                    @include contactText();
+                    width: 80%;
+                    margin-top: 5px;
+                }
+            }
+        }
+
+        // FOOTER FORM
+        #footer-form{
+            grid-area: footer-form;
+            height: 275px;
+
+            // THE FORM
+            form{
+                margin-top: 20px;
+                input, textarea{
+                    margin-top: 10px;
+                    padding: 5px;
+                    border: 1px solid rgb(202, 197, 197);
+                    border-radius: 3px;
+                    outline: none;
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 0.9em;
+                    margin-right: 20px;
+                    width: 450px;
+                }
+                textarea{
+                    height: 100px;
+                    resize: none;
+                }
+                
+                button{
+                    @include defaultBtn();
+                    margin-left: 25%;
+
+                    .fa-chevron-right{
+                        margin-left: 10px;
+                        transition: all 0.3s;
+                    }
+                    &:hover{
+                        background: rgb(18, 206, 18);
+                        .fa-chevron-right{
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav-new-post{
+    background: rgba(20, 20, 20, 0.85);
+}
+
+
+/* ############################# ALERT MESSAGE STYLING ############################# */
+.alert {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 12px;
+    width: 300px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    border-radius: 5px;
+    z-index: 100000;
+}
+
+// ALERT LOGIN
+.alert-login{
+    position: absolute;
+    top: 200px;
+}
+
+// This is the alert success style
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+  
+.alert-error, .alert-danger {
+    background-color: #f2dede;
+    color: #a94442;
+    border-color: #ebccd1;
+}
+
+
+.new-post-container{
+    background: url("https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* ############################# FORM STYLING ############################# */
+#myForm{
+    padding: 10px;
+    margin-top: 100px;
+
+    h1{
+        color: rgb(221, 221, 221);
+    }
+
+    form{
+        margin-left: 50px;
+        margin-top: 50px;
+
+        input, select{
+            margin-top: 15px;
+            margin-bottom: 30px;
+            padding: 10px;
+            width: 600px;
+            border: 1px solid rgb(202, 197, 197);
+            background: rgba(255, 255, 255, 0.192);
+            border-radius: 5px;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9em;
+            color: rgb(221, 221, 221);
+
+            &::placeholder{
+                color: white;
+            }
+        }
+        label{
+            margin-top: 30px;
+            font-weight: bolder;
+            color: rgb(221, 221, 221);
+        }
+        select{
+            width: 620px;
+            color: rgb(17, 183, 189);
+        }
+        textarea{
+            color: black;
+        }
+
+        .add-new-btn{
+            margin-top: 40px;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            height: 50px;
+            width: 120px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 30px;
+            color: white;
+            background: #333;
+            transition: all 0.3s;
+
+            .fa-chevron-right{
+                margin-left: 10px;
+                transition: all 0.3s;
+            }
+            &:hover{
+                background: rgb(18, 206, 18);
+                .fa-chevron-right{
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+
+// This is the login button properties
+.LBtn{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: none;
+    outline: none;
+    border: 1px solid rgb(4, 248, 4);
+    background: transparent;
+    padding: 10px 22px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: all 0.3s;
+
+    &:hover{
+        background: rgb(18, 206, 18);
+    }
+}
+
+// login button position
+.login-btn{
+    top: 55%;
+}
+
+// register button position
+.register-btn{
+    top: 45%;
+}
+
+// This the register form
+.register-form{
+    @include loginForm();
+    margin-bottom: 50px;
+    top: 400px;
+    a{
+        color: rgb(18, 206, 18);
+    }
+}
+
+.login-form{
+    @include loginForm();
+    a{
+        color: rgb(18, 206, 18);
+    }
+}
+
+// This is the background image for all pages except index and category pages
+#register-image{
+    background: url("https://images.pexels.com/photos/735911/pexels-photo-735911.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+@import 'responsive';

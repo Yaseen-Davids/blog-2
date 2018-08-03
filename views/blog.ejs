@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- This is the fonts link -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|David+Libre|Fanwood+Text" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  
+</head>
+<body>
+
+  <!-- This is the main container -->
+  <div id="container" class="new-post-container">
+
+    <!-- This is the navbar -->
+    <nav>
+
+      <!-- This is the navbar -->
+      <div id="navbar">
+
+        <!-- This is the wrapper than positions the content -->
+        <div class="margin-wrapper">
+
+          <div id="nav_links">
+            <a href="/" class="selected">TECHTALK</a>
+            <% if (posts.category == "Tech") { %>
+              <a href="/category/tech" class="active">Tech</a>
+            <% } else { %>
+              <a href="/category/tech">Tech</a>
+            <% } %>
+            <% if (posts.category == "Gaming") { %>
+              <a href="/category/gaming" class="active">Games</a>
+            <% } else { %>
+              <a href="/category/gaming">Games</a>
+            <% } %>
+            <% if (posts.category == "Gadgets") { %>
+              <a href="/category/gadgets" class="active">Gadgets</a>
+            <% } else { %>
+              <a href="/category/gadgets">Gadgets</a>
+            <% } %>
+            
+          </div>
+
+          <!-- USER SESSIONS -->
+          <div id="user-sessions">
+
+            <!-- IF USER LOGGED IN, SHOW NEW POST AND LOGOUT BUTTON -->
+            <% if (user) { %>
+              <a href="/new-post" class="session-btn">New Post</a>
+              <a href="/users/logout" class="session-btn">Logout</a>
+              <!-- ELSE IF USER NOT LOGGED IN SHOW REGISTER AND LOGIN BUTTON -->
+            <% } else { %>
+              <a href="/users/register" class="session-btn vis-btn">Register</a>
+              <a href="/users/login" class="session-btn vis-btn">Login</a>
+            <% } %>
+
+            <div id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+              </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="navbar-links">
+        <a href="/category/tech">Tech</a>
+        <br>
+        <a href="/category/gaming">Games</a>
+        <br>
+        <a href="/category/gadgets">Gadgets</a>
+        <br>
+    </div>
+
+    <section>
+        <div id="blog-post-single">
+
+            <div class="margin-wrapper">
+                <div id="single-post-header">
+                    <h2><%= posts.title %></h2>
+                    <p><%= posts.date %> / <span class="category"><%= posts.category %> </span>/ <%= author %></p>
+                </div>
+                <div class="content-margin">
+                    <% if (posts.image != "" || posts.image != null) { %>
+                      <div id="single-post-image">
+                          <img src="<%= posts.image %>">
+                      </div>
+                    <% } %>
+
+                    <div id="single-post-body">
+                        <h4><%- posts.content %></h4>
+                    </div>
+                    <!-- If user logged in % if username is equal to the author of the posts, show the edit and delete button -->
+                    <% if (user) { %>
+                      <% if (user.id == posts.author) { %>
+                        <!-- This is the edit button -->
+                        <a href="/edit/<%= posts.id %>"><button class="edit-post">Edit<i class="far fa-edit"></i></button></a>
+                        <!-- This is the delete button -->
+                        <a href="#del"><button class="delete-post" data-id="<%= posts.id %>">Delete<i class="far fa-trash-alt"></i></button></a>
+                      
+                      <% } %>
+                    <% } %>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+      <div id="footer">
+        <div class="margin-wrapper">
+          <div id="footer-main">
+            <div id="footer-section">
+              <h3>Contact Us :</h3>
+              <div class="phone-box">
+                <div id="phone-logo">
+                  <img src="https://image.flaticon.com/icons/svg/9/9243.svg">
+                </div>
+                <div id="phone-text">
+                  <h4>061 647 8942</h4>
+                </div>
+              </div>
+              <div class="email-box">
+                <div id="email-logo">
+                  <img src="https://image.flaticon.com/icons/svg/131/131155.svg">
+                </div>
+                <div id="email-text">
+                  <h4>techtalk@gmail.com</h4>
+                </div>
+              </div>
+              <div class="location-box">
+                <div id="location-logo">
+                  <img src="https://image.flaticon.com/icons/svg/684/684809.svg">
+                </div>
+                <div id="location-text">
+                  <h4>314 Imam Haron Rd, Lansdowne, Cape Town, 7780</h4>
+                </div>
+              </div>
+            </div>
+            <div id="footer-form">
+              <h3>Message Us :</h3>
+              <form>
+                <input type="text" id="user-name" name="user-name" placeholder="Your Name">
+                <br>
+                <input type="email" id="user-email" name="user-email" placeholder="Your Email">
+                <br>
+                <textarea id="user-msg" name="user-msg"  placeholder="Your Message"></textarea>
+                <button>Submit<i class="fas fa-chevron-right"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/script.js"></script>
+
+  <script>
+      $(document).ready(function(){
+        $(".vis-btn").fadeIn();
+        $(".selected").addClass("home-link");
+        
+        onscroll = function(){
+          if (window.scrollY > 100){
+            $("#navbar").css('background', 'rgba(20, 20, 20, 0.85)');
+            $(".selected").addClass("home-link");
+            
+          }
+          else {
+            $("#navbar").css('background', 'transparent');
+          }
+        }
+
+        $('.delete-post').on('click', function(e){
+
+          // Confirmation message
+          let confirmDelete = confirm("Are you sure you want to delete the post ?");
+
+          if (confirmDelete == true){
+              // target event
+              let target = $(e.target);
+
+              const id = target.attr('data-id');
+
+              // Ajax function
+              $.ajax({
+                  method: 'DELETE',
+                  url: '/delete/'+id,
+                  success: function(response){
+                      window.location.href="/";
+                  },
+                  error: function(err){
+                      console.log(err);
+                  }
+              });
+          }
+          else {}
+
+        });
+          
+      });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|David+Libre" rel="stylesheet">
+  <!-- This is the fonts link -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  
+</head>
+<body>
+
+  <!-- This is the main container -->
+  <div id="container" class="new-post-container">
+
+    <!-- This is the navbar -->
+    <nav>
+
+      <div id="navbar" class="nav-new-post">
+
+        <div class="margin-wrapper">
+
+          <!-- NAVBAR LINKS -->
+          <div id="nav_links">
+            <a href="/" class="selected">TECHTALK</a>
+            <a href="/category/tech">Tech</a>
+            <a href="/category/gaming">Games</a>
+            <a href="/category/gadgets">Gadgets</a>
+          </div>
+
+          <!-- USER SESSIONS -->
+          <div id="user-sessions">
+
+          <!-- IF USER LOGGED IN, SHOW NEW POST AND LOGOUT BUTTON -->
+          <% if (user) { %>
+            <a href="/new-post" class="session-btn vis-btn">New Post</a>
+            <a href="/users/logout" class="session-btn vis-btn">Logout</a>
+            <!-- ELSE IF USER NOT LOGGED IN SHOW REGISTER AND LOGIN BUTTON -->
+          <% } else { %>
+            <a href="/users/register" class="session-btn vis-btn">Register</a>
+            <a href="/users/login" class="session-btn vis-btn">Login</a>
+          <% } %>
+          </div>
+
+        </div>
+      </div>
+    </nav>
+
+    <div id="myForm">
+        <div class="margin-wrapper">
+            <h1><%= title %></h1>
+            <form method="POST" action="/edit/<%= posts.id %>">
+                <label for="title">Title : </label><br>
+                <input type="text" name="title" id="title" value="<%= posts.title %>">
+                <br>
+                <label for="select">Please select a Category</label><br>
+                <select id="select" name="select">
+                    <option value="<%= posts.category %>"selected="selected"><%= posts.category %></option>
+                    <option value="Gaming">Gaming</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Gadgets">Gadgets</option>
+                </select>
+                <br>
+                <label for="title">Image URL : </label><br>
+                <input type="text" name="image" id="image" value="<%= posts.image %>">
+                <br>
+                <label for="textarea">Content :</label><br>
+                <br>
+                <textarea id="summernote" name="content"><%= posts.content %></textarea>
+                <br>
+                <button class="add-new-btn">Update<i class="fas fa-chevron-right"></i></button>
+                <a href="/"><button class="cancel-edit">Cancel<i class="fas fa-times"></i></button></a>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+      <div id="footer">
+        <div class="margin-wrapper">
+          <div id="footer-main">
+            <div id="footer-section">
+              <h3>Contact Us :</h3>
+              <div class="phone-box">
+                <div id="phone-logo">
+                  <img src="https://image.flaticon.com/icons/svg/9/9243.svg">
+                </div>
+                <div id="phone-text">
+                  <h4>061 647 8942</h4>
+                </div>
+              </div>
+              <div class="email-box">
+                <div id="email-logo">
+                  <img src="https://image.flaticon.com/icons/svg/131/131155.svg">
+                </div>
+                <div id="email-text">
+                  <h4>techtalk@gmail.com</h4>
+                </div>
+              </div>
+              <div class="location-box">
+                <div id="location-logo">
+                  <img src="https://image.flaticon.com/icons/svg/684/684809.svg">
+                </div>
+                <div id="location-text">
+                  <h4>314 Imam Haron Rd, Lansdowne, Cape Town, 7780</h4>
+                </div>
+              </div>
+            </div>
+            <div id="footer-form">
+              <h3>Message Us :</h3>
+              <form>
+                <input type="text" id="user-name" name="user-name" placeholder="Your Name">
+                <br>
+                <input type="email" id="user-email" name="user-email" placeholder="Your Email">
+                <br>
+                <textarea id="user-msg" name="user-msg"  placeholder="Your Message"></textarea>
+                <button>Submit<i class="fas fa-chevron-right"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+    <script src="/javascripts/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
+    <script>
+      $(document).ready(function(){
+        $(".vis-btn").fadeIn();
+
+        $('#summernote').summernote({
+            height: 200
+        });  
+      })
+    </script>
+
+</body>
+</html>

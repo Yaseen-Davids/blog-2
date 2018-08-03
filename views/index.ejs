@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><%= title %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- This is the fonts link -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|David+Libre" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  
+</head>
+<body>
+
+  <!-- This is the main container -->
+  <div id="container">
+
+    <!-- This is the navbar -->
+    <nav>
+
+      <!-- NAVBAR -->
+      <div id="navbar">
+
+        <div class="margin-wrapper">
+
+          <!-- NAVBAR LINKS -->
+          <div id="nav_links">
+            <a href="/" class="selected">TECHTALK</a>
+            <a href="/category/tech">Tech</a>
+            <a href="/category/gaming">Games</a>
+            <a href="/category/gadgets">Gadgets</a>
+          </div>
+
+          <!-- USER SESSIONS -->
+          <div id="user-sessions">
+            <!-- IF USER LOGGED IN, SHOW NEW POST AND LOGOUT BUTTON -->
+            <% if (user) { %>
+              <a href="/new-post" class="session-btn vis-btn">New Post</a>
+              <a href="/users/logout" class="session-btn vis-btn">Logout</a>
+              <!-- ELSE IF USER NOT LOGGED IN SHOW REGISTER AND LOGIN BUTTON -->
+            <% } else { %>
+              <a href="/users/register" class="session-btn vis-btn">Register</a>
+              <a href="/users/login" class="session-btn vis-btn">Login</a>
+            <% } %>
+
+            <div id="hamburger-menu">
+              <i class="fas fa-bars"></i>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="navbar-links">
+        <a href="/category/tech">Tech</a>
+        <br>
+        <a href="/category/gaming">Games</a>
+        <br>
+        <a href="/category/gadgets">Gadgets</a>
+        <br>
+    </div>
+      
+
+    <!-- HOME IMAGE SECTION -->
+    <section>
+      <div id="home-image">
+        <!-- TEXT ON THE HOME IMAGE -->
+        <div id="home-text">
+          <h1>TechTalk</h1>
+          <h3>Sharing News about Things that Matter</h3>
+          
+        </div>
+        <!-- HOME SIGNUP SECTION -->
+        <div id="home-signup">
+          <!-- IF USER NOT LOGGED IN, SHOW SIGN UP AND LOGIN BUTTONS -->
+          <% if (!user) { %>
+            <a href="/users/register"><button>Sign Up<i class="fas fa-chevron-right"></i></button></a>
+            <a href="/users/login"><button>Log In<i class="fas fa-chevron-right"></i></button></a>
+          <% } else { %>
+            <a href="/new-post"><button>New Post<i class="fas fa-chevron-right"></i></button></a>
+            <a href="/users/logout"><button>Logout<i class="fas fa-chevron-right"></i></button></a>
+          <% } %>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- This is the Message -->
+    <%- messages('message', locals) %>
+
+    <section>
+      <div id="intro-section">
+        
+        <div class="margin-wrapper">
+          <div id="intro-header">
+            <h4>Check out our latest News on Tech, Gaming & Gadgets</h4>
+          </div>
+          <div id="intro-main">
+            <div id="tech-main">
+              <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a20bc6324f6ef2969d9a7cae56b8d4d1&auto=format&fit=crop&w=750&q=80">
+              <a href="/category/tech"><h4>Technology</h4></a>
+            </div>
+            <div id="game-main">
+              <img src="http://getwallpapers.com/wallpaper/full/8/f/1/27777.jpg">
+              <a href="/category/gaming"><h4>Gaming</h4></a>
+            </div>
+            <div id="gadget-main">
+              <img src="https://images.unsplash.com/photo-1434494571168-ab162bce2813?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=344914debba1e735356819ae54f326af&auto=format&fit=crop&w=750&q=80">
+              <a href="/category/gadgets"><h4>Gadgets</h4></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div id="content-main">
+        <div class="margin-wrapper">
+
+          <div id="content-header">
+            <h2>Popular Articles : </h2>
+          </div>
+
+          <% for (let i = 0; i < posts.length; i++) { %>
+            <% if (posts[i].popular == "true") { %>
+              <div id="content-post">
+                <div class="blog-post">
+                  <div id="post-image">
+                    <a href="/blog/<%= posts[i].id %>"><img src="<%= posts[i].image %>"></a>
+                  </div>
+                  <div id="post-body">
+                    <a href="/blog/<%= posts[i].id %>"><h3><%= posts[i].title %></h3></a>
+                    <p><%= posts[i].date %> / <span class="category"><%= posts[i].category %></span></p>
+                    <h5><%- posts[i].content.substring(0, 100 - 1) +' [...]' %></h5>
+                  </div>
+                </div>
+              </div>
+            <% } %>
+          <% } %>
+
+          <div id="content-header2">
+            <h2>Latest Articles : </h2>
+          </div>
+
+          <% for (let i2 = 0; i2 < posts.length; i2++) { %>
+            <% if (posts[i2].popular != "true") { %>
+              <% if (posts[i2].image == "" || posts[i2].image == null) { %>
+                <div id="blog-content-only">
+  
+                  <div id="blog-body-only">
+                    <a href="/blog/<%= posts[i2].id %>"><h2 class="post_header"><%= posts[i2].title %></h2></a>
+                    <h5><%= posts[i2].date %> / <span class="category"><%= posts[i2].category %></span></h5>
+                    <h4><%- posts[i2].content.substring(0, 600 - 1) + ' [...]' %></h4>
+                    <a href="/blog/<%= posts[i2].id %>"><button class="readmore-btn">Read More</button></a>
+                  </div>
+      
+                </div>
+              <% } else { %>
+                <div id="blog-content">
+  
+                  <div id="blog-img">
+                    <a href="/blog/<%= posts[i2].id %>"><img src="<%= posts[i2].image %>"></a>
+                  </div>
+                  <div id="blog-body">
+                    <a href="/blog/<%= posts[i2].id %>"><h2 class="post_header"><%= posts[i2].title %></h2></a>
+                    <p><%= posts[i2].date %> / <span class="category"><%= posts[i2].category %></span></h5>
+                    <h5><%- posts[i2].content.substring(0, 260 - 1) + ' [...]' %></h4>
+                    <a href="/blog/<%= posts[i2].id %>"><button class="readmore-btn">Read More</button></a>
+                  </div>
+    
+                </div>
+              <% } %>
+            <% } %>
+          <% } %>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- This is the footer -->
+    <footer>
+      <div id="footer">
+        <div class="margin-wrapper">
+          <!-- This is the footer main section -->
+          <div id="footer-main">
+            <!-- This is the footer section with the contact details -->
+            <div id="footer-section">
+              <h3>Contact Us :</h3>
+
+              <!-- This is the phone main section -->
+              <div class="phone-box">
+                <div id="phone-logo">
+                  <img src="https://image.flaticon.com/icons/svg/9/9243.svg">
+                </div>
+                <div id="phone-text">
+                  <h4>061 647 8942</h4>
+                </div>
+              </div>
+
+              <!-- This is the email section -->
+              <div class="email-box">
+                <div id="email-logo">
+                  <img src="https://image.flaticon.com/icons/svg/131/131155.svg">
+                </div>
+                <div id="email-text">
+                  <h4>techtalk@gmail.com</h4>
+                </div>
+              </div>
+
+              <!-- This is the location section -->
+              <div class="location-box">
+                <div id="location-logo">
+                  <img src="https://image.flaticon.com/icons/svg/684/684809.svg">
+                </div>
+                <div id="location-text">
+                  <h4>314 Imam Haron Rd, Lansdowne, Cape Town, 7780</h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- This is the footer form -->
+            <div id="footer-form">
+              <h3>Message Us :</h3>
+              <form>
+                <input type="text" id="user-name" name="user-name" placeholder="Your Name">
+                <br>
+                <input type="email" id="user-email" name="user-email" placeholder="Your Email">
+                <br>
+                <textarea id="user-msg" name="user-msg"  placeholder="Your Message"></textarea>
+                <button>Submit<i class="fas fa-chevron-right"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/script.js"></script>
+
+</body>
+</html>
