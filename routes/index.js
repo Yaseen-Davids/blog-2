@@ -7,6 +7,7 @@ var session = require('express-session');
 var expressValidator = require('express-validator');
 var request = require('request');
 var passport = require('passport');
+var back = require('express-back');
 
 
 // Months variable for date
@@ -53,6 +54,8 @@ router.use(expressValidator({
     };
   }
 }));
+
+router.use(back());
 
 
 // Passport Config
@@ -207,7 +210,7 @@ router.post('/edit/:id', function(req, res, next){
     }
     else{
       req.flash('success', 'Blog Post Updated');
-      res.redirect('/');
+      return res.back();
     }
   })
 });

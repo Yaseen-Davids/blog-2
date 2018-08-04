@@ -133,8 +133,8 @@
                   </div>
                   <div id="post-body">
                     <a href="/blog/<%= posts[i].id %>"><h3><%= posts[i].title %></h3></a>
-                    <p><%= posts[i].date %> / <span class="category"><%= posts[i].category %></span></p>
-                    <h5><%- posts[i].content.substring(0, 100 - 1) +' [...]' %></h5>
+                    <h5><%= posts[i].date %> / <span class="category"><%= posts[i].category %></span></h5>
+                    <p><%- posts[i].content.substring(0, 100 - 1) +' [...]' %></p>
                   </div>
                 </div>
               </div>

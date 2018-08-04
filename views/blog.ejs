@@ -75,6 +75,9 @@
         <br>
     </div>
 
+    <!-- This is the Message -->
+    <%- messages('message', locals) %>
+
     <section>
         <div id="blog-post-single">
 
@@ -91,7 +94,7 @@
                     <% } %>
 
                     <div id="single-post-body">
-                        <h4><%- posts.content %></h4>
+                        <p><%- posts.content.split(/[.|!|?]+/g).join('.<br><br>') %></p>
                     </div>
                     <!-- If user logged in % if username is equal to the author of the posts, show the edit and delete button -->
                     <% if (user) { %>

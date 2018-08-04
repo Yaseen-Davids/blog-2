@@ -548,14 +548,14 @@
           text-decoration-color: #4776E6;
 }
 
-#content-main #content-post .blog-post #post-body h5 {
+#content-main #content-post .blog-post #post-body p {
   color: grey;
   font-weight: lighter;
   margin-top: 40px;
   font-size: 1em;
 }
 
-#content-main #content-post .blog-post #post-body p {
+#content-main #content-post .blog-post #post-body h5 {
   margin-top: 10px;
   font-size: 0.8em;
 }
@@ -657,7 +657,7 @@
 #content-main #blog-content #blog-body p {
   margin-top: 10px;
   font-size: 0.9em;
-  font-weight: lighter;
+  font-weight: bolder;
 }
 
 #content-main #blog-content-only {
@@ -709,7 +709,7 @@
 #content-main #blog-content-only #blog-body-only p {
   margin-top: 10px;
   font-size: 0.9em;
-  font-weight: lighter;
+  font-weight: bolder;
 }
 
 #content-main #blog-content-only #blog-body-only h4 {
@@ -776,7 +776,7 @@
   margin-top: 30px;
 }
 
-#blog-post-single .content-margin #single-post-body h4 {
+#blog-post-single .content-margin #single-post-body p {
   font-weight: lighter;
   font-size: 1.3em;
   color: white;
@@ -1789,7 +1789,7 @@
   #content-main #blog-content #blog-body p {
     margin-top: 10px;
     font-size: 0.9em;
-    font-weight: lighter;
+    font-weight: bolder;
   }
   #content-main #blog-content #blog-body h2 {
     margin-top: 10px;
@@ -1837,7 +1837,7 @@
   #content-main #blog-content-only #blog-body-only p {
     margin-top: 10px;
     font-size: 0.9em;
-    font-weight: lighter;
+    font-weight: bolder;
   }
   #content-main #blog-content-only #blog-body-only h4 {
     margin-top: 10px;
@@ -2738,7 +2738,7 @@
   #content-main #blog-content #blog-body p {
     margin-top: 10px;
     font-size: 0.9em;
-    font-weight: lighter;
+    font-weight: bolder;
   }
   #content-main #blog-content #blog-body h2 {
     margin-top: 10px;
@@ -2786,7 +2786,7 @@
   #content-main #blog-content-only #blog-body-only p {
     margin-top: 10px;
     font-size: 0.9em;
-    font-weight: lighter;
+    font-weight: bolder;
   }
   #content-main #blog-content-only #blog-body-only h4 {
     margin-top: 10px;
@@ -3395,7 +3395,7 @@
   #content-main #blog-content #blog-body p {
     margin-top: 10px;
     font-size: 0.9em;
-    font-weight: lighter;
+    font-weight: bolder;
   }
   #content-main #blog-content #blog-body h2 {
     margin-top: 10px;
@@ -3443,7 +3443,7 @@
   #content-main #blog-content-only #blog-body-only p {
     margin-top: 10px;
     font-size: 0.9em;
-    font-weight: lighter;
+    font-weight: bolder;
   }
   #content-main #blog-content-only #blog-body-only h4 {
     margin-top: 10px;

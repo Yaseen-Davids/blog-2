@@ -6,23 +6,14 @@
 }
 
 // This is the variables
+// Border Settings
 $borderSettings: 1px solid black;
+// Text color
 $headerColor:#393a3b;
+// Theme color
 $themeBlue : #4776E6;
 
-// This is the mixins
-@mixin socialLogos {
-    float: left;
-    margin-left: 40px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 1.5em;
-
-    &:hover{
-        color: #4776E6;
-    }
-}
-
+// Category section box
 @mixin categoryBox {
     box-shadow: 0px 0px 5px grey;
     transition: all 0.3s;
@@ -50,6 +41,8 @@ $themeBlue : #4776E6;
     }
 }
 
+
+// Contect Section
 @mixin contentBody {
     .post_header{
         margin-bottom: 10px;
@@ -75,10 +68,11 @@ $themeBlue : #4776E6;
     p{
         margin-top: 10px;
         font-size: 0.9em;
-        font-weight: lighter;
+        font-weight: bolder;
     }
 }
 
+// Button settings
 @mixin defaultBtn {
     border: none;
     outline: none;
@@ -123,6 +117,7 @@ $themeBlue : #4776E6;
     }
 }
 
+// Form settings
 @mixin loginForm{
     position: absolute;
     top: 300px;
@@ -233,6 +228,7 @@ $themeBlue : #4776E6;
     }
 }
 
+// Navbar background color
 .new-bgcolor{
     background: rgba(20, 20, 20, 0.85);
 }
@@ -389,6 +385,7 @@ $themeBlue : #4776E6;
     
 }
 
+// Navbar links for mobile
 #navbar-links{
     display: none;
 }
@@ -513,13 +510,13 @@ $themeBlue : #4776E6;
                         text-decoration-color: #4776E6;
                     }
                 }
-                h5{
+                p{
                     color: grey;
                     font-weight: lighter;
                     margin-top: 40px;
                     font-size: 1em;
                 }
-                p{
+                h5{
                     margin-top: 10px;
                     font-size: 0.8em;
                 }
@@ -666,7 +663,7 @@ $themeBlue : #4776E6;
         // SINGLE BLOG POST BODY
         #single-post-body{
             margin-top: 30px;
-            h4{
+            p{
                 font-weight: lighter;
                 font-size: 1.3em;
                 color: white;
@@ -830,6 +827,7 @@ $themeBlue : #4776E6;
     }
 }
 
+// Navbar background color
 .nav-new-post{
     background: rgba(20, 20, 20, 0.85);
 }
@@ -989,6 +987,7 @@ $themeBlue : #4776E6;
     }
 }
 
+// This is the login form
 .login-form{
     @include loginForm();
     a{
@@ -1005,4 +1004,5 @@ $themeBlue : #4776E6;
     background-attachment: fixed;
 }
 
+// Import responsiveness
 @import 'responsive';
